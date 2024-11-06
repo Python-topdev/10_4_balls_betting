@@ -1,5 +1,10 @@
 .App {
-  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {
@@ -34,5 +39,20 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.zoom-div {
+  animation: zoomOut 2s forwards; /* Triggers the zoom and hides */
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4); /* Scales to 2 */
+    opacity: 1; /* Fades out */
   }
 }

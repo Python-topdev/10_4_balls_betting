@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Order Ball Animation</title>
+  <style>
+    /* Container to position balls relative to it */
+    .container {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      margin: 50px auto;
+      border: 2px solid #333;
+      background-color: #f5f5f5;
+      overflow: hidden;
+    }
+
+    /* Ball styles */
+    .ball {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-color: #4caf50;
+      border-radius: 50%;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: moveToPosition 2s forwards;
+    }
+
+    /* Keyframes for moving from center to target positions */
+    @keyframes moveToPosition {
+      to {
+        /* The final position will be set inline by JavaScript */
+        transform: translate(var(--translateX), var(--translateY));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Generate 10 balls labeled with index numbers -->
+    <div class="ball" style="--i: 0;">0</div>
+    <div class="ball" style="--i: 1;">1</div>
+    <div class="ball" style="--i: 2;">2</div>
+    <div class="ball" style="--i: 3;">3</div>
+    <div class="ball" style="--i: 4;">4</div>
+    <div class="ball" style="--i: 5;">5</div>
+    <div class="ball" style="--i: 6;">6</div>
+    <div class="ball" style="--i: 7;">7</div>
+    <div class="ball" style="--i: 8;">8</div>
+    <div class="ball" style="--i: 9;">9</div>
+  </div>
+
+  <script>
+    // Define target positions in a grid layout
+    const targetPositions = [
+      { x: -150, y: -150 },
+      { x: 0, y: -150 },
+      { x: 150, y: -150 },
+      { x: -150, y: 0 },
+      { x: 0, y: 0 },
+      { x: 150, y: 0 },
+      { x: -150, y: 150 },
+      { x: 0, y: 150 },
+      { x: 150, y: 150 },
+      { x: 75, y: -75 },
+    ];
+
+    // Function to shuffle an array
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    // Shuffle the target positions to apply them in random order
+    const randomOrderPositions = shuffleArray([...targetPositions]);
+
+    // Get all balls and assign shuffled target positions
+    const balls = document.querySelectorAll('.ball');
+    balls.forEach((ball, index) => {
+      const { x, y } = randomOrderPositions[index];
+      ball.style.setProperty('--translateX', `${x}px`);
+      ball.style.setProperty('--translateY', `${y}px`);
+      ball.style.animationDelay = `${Math.random() * 0.5}s`; // Stagger start time slightly
+    });
+  </script>
+</body>
+</html>
