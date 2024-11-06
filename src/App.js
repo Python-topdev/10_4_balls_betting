@@ -169,6 +169,10 @@ function App() {
           className="px-8"
           onClick={() => {
             if (isBallPause == true && isGlobePause == true) {
+              if (restBalls <= 1) {
+                handleRestart();
+                return;
+              }
               if (isGlobeState) isGlobePause = false;
               else isBallPause = false;
             } else {
