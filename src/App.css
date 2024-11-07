@@ -33,6 +33,49 @@
   color: #61dafb;
 }
 
+.sphere {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 80%;
+  left: 44%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #d3d3d3,
+    #a9a9a9 60%,
+    #808080 100%
+  );
+  box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.3),
+    inset 10px 10px 20px rgba(255, 255, 255, 0.2),
+    0px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.bottomSphere {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #d3d3d3,
+    #a9a9a9 60%,
+    #808080 100%
+  );
+  box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.3),
+    inset 10px 10px 20px rgba(255, 255, 255, 0.2),
+    0px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -49,10 +92,17 @@
 @keyframes zoomOut {
   0% {
     transform: scale(1);
+    top: 70%;
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    top: 85%;
     opacity: 1;
   }
   100% {
     transform: scale(4); /* Scales to 2 */
-    opacity: 1; /* Fades out */
+    top: 85%;
+    opacity: 1;
   }
 }

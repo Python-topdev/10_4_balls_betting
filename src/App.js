@@ -203,7 +203,7 @@ function App() {
       </header>
       <div className="flex justify-center items-center grow">
         <div className="flex flex-wrap justify-center items-center">
-          <div className="relative inline-block w-28 h-36">
+          <div className="relative inline-block w-56 h-64">
             <img
               className="w-full h-auto"
               src={
@@ -216,27 +216,16 @@ function App() {
               alt="Slideshow Image"
             />
             <div
+              className={`sphere ${show[0] ? "zoom-div" : ""}`}
               style={{
-                position: "absolute",
-                top: "80%",
-                left: "44%",
-                transform:
-                  "translate(-50%, -50%)" /* Center the overlay image */,
-                width: "16px" /* Set desired width for overlay image */,
-                height: "16px" /* Set desired height for overlay image */,
-                opacity: "0",
                 animationPlayState: isBallPause ? "paused" : "running",
               }}
-              className={`bg-gray-400 rounded-full flex justify-center items-center ${
-                show[0] ? "zoom-div" : ""
-              }`}
               onAnimationEnd={onVideoEnd}
             >
               {expectedData[0][10 - restBalls]}
             </div>
           </div>
-
-          <div className="relative inline-block w-28 h-36">
+          <div className="relative inline-block w-56 h-64">
             <img
               className="w-full h-auto"
               src={
@@ -250,25 +239,15 @@ function App() {
             />
             <div
               style={{
-                position: "absolute",
-                top: "80%",
-                left: "44%",
-                transform:
-                  "translate(-50%, -50%)" /* Center the overlay image */,
-                width: "16px" /* Set desired width for overlay image */,
-                height: "16px" /* Set desired height for overlay image */,
-                opacity: "0",
                 animationPlayState: isBallPause ? "paused" : "running",
               }}
-              className={`bg-gray-400 rounded-full flex justify-center items-center ${
-                show[1] ? "zoom-div" : ""
-              }`}
+              className={`sphere ${show[1] ? "zoom-div" : ""}`}
               onAnimationEnd={onVideoEnd}
             >
               {expectedData[1][10 - restBalls]}
             </div>
           </div>
-          <div className="relative inline-block w-28 h-36">
+          <div className="relative inline-block w-56 h-64">
             <img
               className="w-full h-auto"
               src={
@@ -282,25 +261,15 @@ function App() {
             />
             <div
               style={{
-                position: "absolute",
-                top: "80%",
-                left: "44%",
-                transform:
-                  "translate(-50%, -50%)" /* Center the overlay image */,
-                width: "16px" /* Set desired width for overlay image */,
-                height: "16px" /* Set desired height for overlay image */,
-                opacity: "0",
                 animationPlayState: isBallPause ? "paused" : "running",
               }}
-              className={`bg-gray-400 rounded-full flex justify-center items-center ${
-                show[2] ? "zoom-div" : ""
-              }`}
+              className={`sphere ${show[2] ? "zoom-div" : ""}`}
               onAnimationEnd={onVideoEnd}
             >
               {expectedData[2][10 - restBalls]}
             </div>
           </div>
-          <div className="relative inline-block w-28 h-36">
+          <div className="relative inline-block w-56 h-64">
             <img
               className="w-full h-auto"
               src={
@@ -314,19 +283,9 @@ function App() {
             />
             <div
               style={{
-                position: "absolute",
-                top: "80%",
-                left: "44%",
-                transform:
-                  "translate(-50%, -50%)" /* Center the overlay image */,
-                width: "16px" /* Set desired width for overlay image */,
-                height: "16px" /* Set desired height for overlay image */,
-                opacity: "0",
                 animationPlayState: isBallPause ? "paused" : "running",
               }}
-              className={`bg-gray-400 rounded-full flex justify-center items-center ${
-                show[3] ? "zoom-div" : ""
-              }`}
+              className={`sphere ${show[3] ? "zoom-div" : ""}`}
               onAnimationEnd={onVideoEnd}
             >
               {expectedData[3][10 - restBalls]}
@@ -350,11 +309,11 @@ function App() {
           <div className="flex flex-wrap m-4" key={x}>
             {row.map((col, y) => (
               <div
-                className={`${
+                className={`bottomSphere ${
                   (10 - restBalls) * 4 + earthIndex > x * 4 + y
                     ? ""
-                    : "bg-transparent text-transparent"
-                } bg-gray-400 rounded-full w-4 h-4 m-1 flex justify-center items-center `}
+                    : "opacity-0"
+                } `}
                 key={y}
               >
                 {expectedData[y][x]}
