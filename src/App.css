@@ -94,15 +94,18 @@
     transform: scale(1);
     top: 70%;
     opacity: 1;
+    z-index: 1;
   }
   50% {
     transform: scale(1);
-    top: 85%;
+    top: 87%;
     opacity: 1;
+    z-index: 11;
   }
   100% {
     transform: scale(4); /* Scales to 2 */
-    top: 85%;
+    top: 87%;
     opacity: 1;
+    z-index: 11;
   }
 }

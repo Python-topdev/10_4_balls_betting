@@ -205,7 +205,7 @@ function App() {
         <div className="flex flex-wrap justify-center items-center">
           <div className="relative inline-block w-56 h-64">
             <img
-              className="w-full h-auto"
+              className="w-full h-auto relative z-10"
               src={
                 restBalls <= 1
                   ? earthIndex >= 0
@@ -227,7 +227,7 @@ function App() {
           </div>
           <div className="relative inline-block w-56 h-64">
             <img
-              className="w-full h-auto"
+              className="w-full h-auto relative z-10"
               src={
                 restBalls <= 1
                   ? earthIndex >= 1
@@ -249,7 +249,7 @@ function App() {
           </div>
           <div className="relative inline-block w-56 h-64">
             <img
-              className="w-full h-auto"
+              className="w-full h-auto relative z-10"
               src={
                 restBalls <= 1
                   ? earthIndex >= 2
@@ -271,7 +271,7 @@ function App() {
           </div>
           <div className="relative inline-block w-56 h-64">
             <img
-              className="w-full h-auto"
+              className="w-full h-auto relative z-10"
               src={
                 restBalls <= 1
                   ? earthIndex >= 3
