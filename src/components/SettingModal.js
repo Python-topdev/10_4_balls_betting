@@ -11,6 +11,8 @@ const SettingModal = (props) => {
     handleOk,
     handleCancel,
     initData,
+    limit,
+    setLimit,
   } = props;
 
   const arrayIndex = Array.from({ length: 10 }, (_, index) => index);
@@ -67,6 +69,17 @@ const SettingModal = (props) => {
             ))}
           </div>
         ))}
+      </div>
+      <div className="w-full flex justify-center items-center">
+        Limit Number:
+        <input
+          className="p-2 mx-4 bg-gray-200"
+          type="number"
+          value={limit}
+          onChange={(e) => setLimit(e.target.value)}
+          min={1}
+          max={10}
+        />
       </div>
     </Modal>
   );

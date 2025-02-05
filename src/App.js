@@ -74,9 +74,13 @@ function App() {
   const [dummy, setDummy] = useState(true);
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [customData, setCustomData] = useState(
-    Array.from({ length: 4 }, () => Array(10).fill(-1))
-  );
+  const [customData, setCustomData] = useState([
+    [9, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [8, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [7, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+    [6, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+  ]);
+  const [limit, setLimit] = useState(10);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -109,8 +113,12 @@ function App() {
     setDummy(!dummy);
   };
 
+  useEffect(() => {
+    console.log("here");
+  }, []);
+
   const playVideo = () => {
-    if (frameIndex[earthIndex] < 80 - 1 && restBalls > 1) {
+    if (frameIndex[earthIndex] < 80 && restBalls > 1) {
       let bufFrameIndex = JSON.parse(JSON.stringify(frameIndex));
       bufFrameIndex[earthIndex] += 1;
       frameIndex = bufFrameIndex;
@@ -131,7 +139,7 @@ function App() {
       isBallPause = true;
       isGlobePause = false;
       // setDummy(!dummy);
-    } else if (restBalls > 1) {
+    } else if (restBalls > 10 - limit + 1) {
       earthIndex = 0;
       frameIndex = [0, 0, 0, 0];
       restBalls = restBalls - 1;
@@ -140,6 +148,8 @@ function App() {
       // setDummy(!dummy);
     } else {
       restBalls -= 1;
+      if (restBalls > 1) earthIndex = 0;
+      else earthIndex = 4;
       isGlobePause = true;
       isBallPause = true;
     }
@@ -210,7 +220,7 @@ function App() {
                 restBalls <= 1
                   ? earthIndex >= 0
                     ? `./assets/empty.png`
-                    : `./assets/2_79.png`
+                    : `./assets/one.png`
                   : `./assets/${restBalls}_${frameIndex[0]}.png`
               }
               alt="Slideshow Image"
@@ -232,7 +242,7 @@ function App() {
                 restBalls <= 1
                   ? earthIndex >= 1
                     ? `./assets/empty.png`
-                    : `./assets/2_79.png`
+                    : `./assets/one.png`
                   : `./assets/${restBalls}_${frameIndex[1]}.png`
               }
               alt="Slideshow Image"
@@ -254,7 +264,7 @@ function App() {
                 restBalls <= 1
                   ? earthIndex >= 2
                     ? `./assets/empty.png`
-                    : `./assets/2_79.png`
+                    : `./assets/one.png`
                   : `./assets/${restBalls}_${frameIndex[2]}.png`
               }
               alt="Slideshow Image"
@@ -276,7 +286,7 @@ function App() {
                 restBalls <= 1
                   ? earthIndex >= 3
                     ? `./assets/empty.png`
-                    : `./assets/2_79.png`
+                    : `./assets/one.png`
                   : `./assets/${restBalls}_${frameIndex[3]}.png`
               }
               alt="Slideshow Image"
@@ -303,6 +313,8 @@ function App() {
         handleOk={handleOk}
         handleCancel={handleCancel}
         initData={initData}
+        limit={limit}
+        setLimit={setLimit}
       />
       <div className="w-full flex flex-wrap justify-center items-center">
         {transpose(initData).map((row, x) => (
@@ -310,13 +322,13 @@ function App() {
             {row.map((col, y) => (
               <div
                 className={`bottomSphere ${
-                  (10 - restBalls) * 4 + earthIndex > x * 4 + y
+                  (restBalls - 1) * 4 + 3 - earthIndex < x * 4 + y
                     ? ""
                     : "opacity-0"
                 } `}
                 key={y}
               >
-                {expectedData[y][x]}
+                {expectedData[3 - y][9 - x]}
               </div>
             ))}
           </div>
